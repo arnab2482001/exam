@@ -1,0 +1,59 @@
+//server 
+//root
+ cd /etc/vsftpd/
+ls 
+//to make copy to take backup
+cp vsftpd.conf vsftpd.conf.org
+
+ls -ltr
+
+//to make changes
+vi vsftpd.conf
+// Config Changes
+// inside--> anoymous_enable=NO
+		Uncomment
+			ascii_upload_enable=YES
+			ascii_download_enable=YES
+		May add
+			use_localtime=YES
+
+//remote server ftp setting
+//start and enable vsftpd service
+systemctl start vsftpd.service
+systemctl status vsftpd.service
+
+//stop firewall or allow FTP to firewall
+systemctl stop firewalld.service
+systectl status firewalld.service
+
+//exit from root user
+exit
+//copy ip address
+ipconfig
+
+//client
+ftp IP ADDRESS
+NAME:
+PASSWD:
+//to exit
+ftp>bye
+
+//make a file
+vim ftp_testfile.txt  (type something)
+:wq
+
+now again login in ftp
+//uploading//.......................................................................
+put ftp_testfile.txt 
+//downloading//.....................................................................
+get file_name
+
+//to check directory
+pwd
+//to change directory
+cd dir_name
+
+//now in server side you can view the file usig cat comand or if in some directory by cd commnd then ls
+cat ftp_testfile.txt
+
+
