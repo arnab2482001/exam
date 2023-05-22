@@ -539,20 +539,17 @@ SELECT cust_no, fname, lname FROM cust;
 
 --2--
 
-SELECT fname, lname FROM cust;
+SELECT fname, lname FROM V1;
 
 --3--
 
-CREATE VIEW customers_with_movies AS
-SELECT DISTINCT c.cust_no, c.fname, c.lname
-FROM cust c
-JOIN invoice i ON c.cust_no = i.cust_no;
+CREATE VIEW V2 AS SELECT FNAME,LNAME FROM CUST WHERE CUST_ID IN(SELECT CUST_ID FROM INVOICE);
 
 --4--
 
 CREATE TABLE odd_even_numbers (
-  odd_number INT,
-  even_number INT
+  odd_number (5),
+  even_number (5)
 );
 
 --5--
